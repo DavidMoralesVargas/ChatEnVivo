@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="Hexagonal.Application/Hexagonal.Application.csproj" Id="19293249-94cf-4fde-8fd1-67f241340e39" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Hexagonal.Domain/Hexagonal.Domain.csproj" Id="11e24f0b-a11b-4a74-bc0f-c5a4926fd9f1" />
+  </Folder>
+  <Folder Name="/Infraestructure/">
+    <Project Path="Hexagonal.Infraestructure/Hexagonal.Infraestructure.csproj" Id="96556f01-f995-4755-9ec9-04aeeb3eee50" />
+  </Folder>
+  <Folder Name="/WebAPI/">
+    <Project Path="Hexagonal.API/Hexagonal.API.csproj" Id="1dae8bcc-2283-4a8f-87c8-cd92a6da86c5" />
+  </Folder>
+</Solution>
