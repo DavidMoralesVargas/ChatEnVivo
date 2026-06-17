@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CasosDeUso\CodigosChats\" />
+    <Folder Include="CasosDeUso\Usuarios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hexagonal.Domain\Hexagonal.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
