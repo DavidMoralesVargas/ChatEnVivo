@@ -11,6 +11,9 @@
 *.sln.docstates
 *.env
 
+# Quitar el archivo de configuración de desarrollo, ya que contiene información sensible
+appsettings.Development.json
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
