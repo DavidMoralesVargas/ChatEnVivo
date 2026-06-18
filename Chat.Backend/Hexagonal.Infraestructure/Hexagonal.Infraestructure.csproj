@@ -14,4 +14,8 @@
     <Folder Include="Persistencia\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
+  </ItemGroup>
+
 </Project>
