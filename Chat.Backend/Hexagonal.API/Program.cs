@@ -13,7 +13,8 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddScoped<IUsuariosRepository>(provider =>
-    new UsuariosRepository(connectionString));
+    new UsuariosRepository(connectionString!));
+
 
 
 var app = builder.Build();
