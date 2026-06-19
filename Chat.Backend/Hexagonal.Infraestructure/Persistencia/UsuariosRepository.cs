@@ -1,5 +1,7 @@
-﻿using Hexagonal.Application.Persistencia;
+﻿using Dapper;
+using Hexagonal.Application.Persistencia;
 using Hexagonal.Domain.Entidades;
+using Npgsql;
 
 namespace Hexagonal.Infraestructure.Persistencia
 {
@@ -13,9 +15,15 @@ namespace Hexagonal.Infraestructure.Persistencia
             _connectionString = connectionString;
         }
 
-        public bool BuscarUsuario(string email)
+        public async Task<dynamic> BuscarUsuario(string email)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection(_connectionString);
+
+            string query = "SELECT * FROM usuarios";
+
+            var usuarios = await connection.QueryAsync<dynamic>(query);
+
+            return usuarios;
         }
 
         public Usuario RegistrarUsuario(string usuario, string email, string contrasena)

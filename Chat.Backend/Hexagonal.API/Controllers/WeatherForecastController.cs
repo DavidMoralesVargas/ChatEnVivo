@@ -1,3 +1,4 @@
+using Hexagonal.Application.Persistencia;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hexagonal.API.Controllers
@@ -13,9 +14,12 @@ namespace Hexagonal.API.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly IUsuariosRepository _repository;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IUsuariosRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +32,12 @@ namespace Hexagonal.API.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("jnd")]
+        public async Task<IActionResult> Traer()
+        {
+            return Ok(await _repository.BuscarUsuario("s"));
         }
     }
 }
