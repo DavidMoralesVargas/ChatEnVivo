@@ -2,8 +2,8 @@
 
 namespace Hexagonal.Application.Puertos.Entrada.Usuarios
 {
-    public interface IIngresarUsuarioCasoUso
+    public interface IBuscarUsuarioCasoUso
     {
-        Task<Usuario> Ingresar(string nombre, string contrasena);
+        Task<Usuario> BuscarUsuario(string Email);
     }
 }

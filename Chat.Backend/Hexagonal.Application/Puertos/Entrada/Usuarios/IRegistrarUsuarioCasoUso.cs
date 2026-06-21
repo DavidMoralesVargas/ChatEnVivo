@@ -2,6 +2,6 @@
 {
     public interface IRegistrarUsuarioCasoUso
     {
-        Task<string> Registrar(string NomUsuario, string Email, string Contrasena);
+        Task<bool> Registrar(string NomUsuario, string Email, string Contrasena);
     }
 }

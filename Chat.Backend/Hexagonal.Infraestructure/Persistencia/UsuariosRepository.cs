@@ -15,25 +15,49 @@ namespace Hexagonal.Infraestructure.Persistencia
             _connectionString = connectionString;
         }
 
-        public async Task<dynamic> BuscarUsuario(string email)
+        public async Task<Usuario> BuscarUsuario(string email)
         {
             using var connection = new NpgsqlConnection(_connectionString);
 
-            string query = "SELECT * FROM usuarios";
+            string query = "SELECT * FROM usuarios WHERE email = @email";
 
-            var usuarios = await connection.QueryAsync<dynamic>(query);
+            var usuario = await connection.QueryFirstOrDefaultAsync<Usuario>(query, new { email = email});
 
-            return usuarios;
+            return usuario!;
         }
 
-        public Usuario RegistrarUsuario(string usuario, string email, string contrasena)
+        public async Task<Usuario> Ingresar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection(_connectionString);
+
+            string query = "SELECT * FROM usuarios WHERE nombre_usuario = @nombre_usuario AND contrasena = @contrasena";
+
+            var usuarioIngresado = await connection.QueryFirstOrDefaultAsync<Usuario>(query,
+                new
+                {
+                    nombre_usuario = usuario.Nombre_Usuario,
+                    contrasena = usuario.Contrasena
+                });
+
+            return usuarioIngresado!;
         }
 
-        public bool VerificarContrasena(string password)
+        public async Task<bool> RegistrarUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection(_connectionString);
+
+            string query = "INSERT INTO \"usuarios\"(nombre_usuario, email, contrasena) VALUES (@nombre_usuario, @email, @contrasena)";
+
+            var filasAfectadas = await connection.ExecuteAsync(query,
+                new
+                {
+                    nombre_usuario = usuario.Nombre_Usuario,
+                    email = usuario.Email,
+                    contrasena = usuario.Contrasena
+                });
+
+            return filasAfectadas != 0;
         }
+
     }
 }

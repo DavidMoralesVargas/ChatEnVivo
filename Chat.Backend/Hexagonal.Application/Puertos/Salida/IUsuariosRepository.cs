@@ -5,8 +5,8 @@ namespace Hexagonal.Application.Persistencia
 {
     public interface IUsuariosRepository
     {
-        Task<dynamic> BuscarUsuario(string email); //cambio
-        bool VerificarContrasena(string password);
-        Usuario RegistrarUsuario(string usuario, string email, string contrasena);
+        Task<Usuario> BuscarUsuario(string email); 
+        Task<Usuario> Ingresar(Usuario usuario);
+        Task<bool> RegistrarUsuario(Usuario usuario);
     }
 }
