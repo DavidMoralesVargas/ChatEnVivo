@@ -5,8 +5,8 @@
     </div>
     
     <div class="header-center">
-      <button class="nav-btn">Chat con Usuarios</button>
-      <button class="nav-btn">Chat con Grupos</button>
+        <button class="nav-btn" @click="irAUsuarios">Chat con Usuarios</button>
+        <button class="nav-btn" @click="irAGrupos">Chat con Grupos</button>
     </div>
 
     <div class="header-right">
@@ -18,6 +18,17 @@
 <script setup>
 import { useRouter } from 'vue-router';
 const router = useRouter();
+
+// Función para ir a la vista de usuarios
+const irAUsuarios = () => {
+  router.push('/usuarios'); // Reemplaza '/usuarios' con la ruta real que definiste en tu router
+};
+
+// Función para ir a la vista de grupos
+const irAGrupos = () => {
+  router.push('/grupos'); // Reemplaza '/grupos' con la ruta real que definiste en tu router
+};
+
 const cerrarSesion = () => {
   // Borramos el token del local storage
   localStorage.removeItem("Token");

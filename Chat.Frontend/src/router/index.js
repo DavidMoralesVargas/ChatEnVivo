@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Index from '../views/index.vue'
 import Ingreso from '../views/Auth/Ingreso.vue'
+import Grupos from '../views/Chats/ChatGrupal.vue'
+import Usuarios from '../views/Chats/ChatIndividual.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -16,6 +18,18 @@ const router = createRouter({
             path: "/ingresar",
             name: "Ingresar",
             component: Ingreso
+        },
+        {
+            path: "/grupos",
+            name: "Grupos",
+            component: Grupos,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: "/usuarios",
+            name: "Usuarios",
+            component: Usuarios,
+            meta: { requiresAuth: true }
         }
     ]
 })
