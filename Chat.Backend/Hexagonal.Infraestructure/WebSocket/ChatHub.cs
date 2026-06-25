@@ -19,5 +19,6 @@ namespace Hexagonal.Infraestructure.WebSocket
                 partidaId
             );
         }
+
     }
 }
