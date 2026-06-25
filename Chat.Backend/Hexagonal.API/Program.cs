@@ -1,7 +1,15 @@
+using Hexagonal.Application.CasosDeUso.Chats;
 using Hexagonal.Application.CasosDeUso.Usuarios;
 using Hexagonal.Application.Persistencia;
+using Hexagonal.Application.Puertos.Entrada.Chats;
 using Hexagonal.Application.Puertos.Entrada.Usuarios;
+using Hexagonal.Application.Puertos.Salida;
+using Hexagonal.Infraestructure.AdaptadorSalida;
 using Hexagonal.Infraestructure.Persistencia;
+using Hexagonal.Infraestructure.WebSocket;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +22,35 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
 
+builder.Services.AddSignalR();
+
 //Puerto y Adaptador de Salida
 builder.Services.AddScoped<IUsuariosRepository>(provider =>
     new UsuariosRepository(connectionString!));
+builder.Services.AddScoped<IChatsSignalR, ChatSignalR>();
 
 //Implementación de Puertos de Entrada (Casos de Uso)
 builder.Services.AddScoped<IIngresarUsuarioCasoUso, IngresarUsuarioCasoUso>();
 builder.Services.AddScoped<IRegistrarUsuarioCasoUso, RegistrarUsuarioCasoUso>();
 builder.Services.AddScoped<IBuscarUsuarioCasoUso, BuscarUsuarioCasoUso>();
+builder.Services.AddScoped<IBuscarTodosCasoUso, BuscarTodosCasoUso>();
+builder.Services.AddScoped<IEnviarGrupoCasoUso, EnviarGrupoCasoUso>();
+builder.Services.AddScoped<IEnviarTodosCasoUso, EnviarTodosCasoUso>();
+builder.Services.AddScoped<IEnviarUsuarioCasoUso, EnviarUsuarioCasoUso>();
+
+
+//Configuramos autenticación de Token
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+{
+    ValidateIssuer = false,
+    ValidateAudience = false,
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
+    ClockSkew = TimeSpan.Zero
+});
+
 
 
 var app = builder.Build();
@@ -38,6 +67,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapHub<ChatHub>("/chathub");
 
 app.UseHttpsRedirection();
 

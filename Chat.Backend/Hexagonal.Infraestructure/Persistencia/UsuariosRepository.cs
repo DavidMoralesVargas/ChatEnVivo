@@ -15,6 +15,17 @@ namespace Hexagonal.Infraestructure.Persistencia
             _connectionString = connectionString;
         }
 
+        public async Task<List<Usuario>> BuscarTodos()
+        {
+            using var connection = new NpgsqlConnection(_connectionString);
+
+            string query = "SELECT * FROM usuarios";
+
+            var usuario = await connection.QueryAsync<Usuario>(query);
+
+            return usuario.ToList();
+        }
+
         public async Task<Usuario> BuscarUsuario(string email)
         {
             using var connection = new NpgsqlConnection(_connectionString);

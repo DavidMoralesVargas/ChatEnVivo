@@ -15,20 +15,35 @@ namespace Hexagonal.API.Controllers
         private IBuscarUsuarioCasoUso _buscarCasoUso;
         private IIngresarUsuarioCasoUso _ingresarCasoUso;
         private IRegistrarUsuarioCasoUso _registrarCasoUso;
+        private IBuscarTodosCasoUso _buscarTodosCasoUso;
         private IConfiguration _configuration;
 
         public UsuariosController(IBuscarUsuarioCasoUso buscarCasoUso,
                                   IIngresarUsuarioCasoUso ingresarCasoUso,
                                   IRegistrarUsuarioCasoUso registrarCasoUso,
+                                  IBuscarTodosCasoUso buscarTodosCasoUso,
                                   IConfiguration configuration)
         {
             _buscarCasoUso = buscarCasoUso;
             _ingresarCasoUso = ingresarCasoUso;
             _registrarCasoUso = registrarCasoUso;
+            _buscarTodosCasoUso = buscarTodosCasoUso;
             _configuration = configuration;
         }
 
         [HttpGet]
+        public async Task<IActionResult> BuscarTodos()
+        {
+            var respuesta = await _buscarTodosCasoUso.BuscarTodos();
+            if(respuesta != null)
+            {
+                return Ok(respuesta);
+            }
+            return BadRequest();
+        }
+
+
+        [HttpGet("buscarEmail")]
         public async Task<IActionResult> Buscar([FromQuery] string email)
         {
             var respuesta = await _buscarCasoUso.BuscarUsuario(email);
@@ -68,6 +83,7 @@ namespace Hexagonal.API.Controllers
                 new(ClaimTypes.Name, usuario.Nombre_Usuario!),
                 new("email", usuario.Email!),
                 new("sub", usuario.Nombre_Usuario!),
+                new(ClaimTypes.NameIdentifier, usuario.Nombre_Usuario!)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtKey"]!));
