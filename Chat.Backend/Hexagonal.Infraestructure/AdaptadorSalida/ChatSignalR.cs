@@ -13,9 +13,14 @@ namespace Hexagonal.Infraestructure.AdaptadorSalida
             _hub = hub;
         }
 
-        public async Task EnviarMensajeAGrupo(string mensaje, string grupo, string evento)
+        public async Task AvisarCreacion()
         {
-            await _hub.Clients.Group(grupo).SendAsync(evento, mensaje);
+            await _hub.Clients.All.SendAsync("CreacionChat");
+        }
+
+        public async Task EnviarMensajeAGrupo(string mensaje, string grupo, string evento, string usuario)
+        {
+            await _hub.Clients.Group(grupo).SendAsync(evento, new { Mensaje = mensaje, Usuario = usuario});
         }
 
         public async Task EnviarMensajeATodos(string mensaje, string evento, string IdEmisor, string usuarioId)

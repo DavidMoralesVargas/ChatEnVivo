@@ -2,6 +2,6 @@
 {
     public interface IEnviarGrupoCasoUso
     {
-        Task EnviarGrupo(string mensaje, string grupo, string evento);
+        Task EnviarGrupo(string mensaje, string grupo, string evento, string usuario);
     }
 }

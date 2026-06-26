@@ -37,6 +37,17 @@ namespace Hexagonal.Infraestructure.Persistencia
             return usuario!;
         }
 
+        public async Task<Usuario> BuscarUsuarioPorNombre(string nombre)
+        {
+            using var connection = new NpgsqlConnection(_connectionString);
+
+            string query = "SELECT * FROM usuarios WHERE nombre_usuario = @nombreUsu";
+
+            var usuario = await connection.QueryFirstOrDefaultAsync<Usuario>(query, new { nombreUsu = nombre });
+
+            return usuario!;
+        }
+
         public async Task<Usuario> Ingresar(Usuario usuario)
         {
             using var connection = new NpgsqlConnection(_connectionString);

@@ -12,11 +12,11 @@ namespace Hexagonal.Application.CasosDeUso.Chats
             _chat = chat;
         }
 
-        public async Task EnviarGrupo(string mensaje, string grupo, string evento)
+        public async Task EnviarGrupo(string mensaje, string grupo, string evento, string usuario)
         {
             try
             {
-                await _chat.EnviarMensajeAGrupo(mensaje, grupo, evento);
+                await _chat.EnviarMensajeAGrupo(mensaje, grupo, evento, usuario);
             }
             catch(Exception e)
             {

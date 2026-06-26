@@ -28,6 +28,8 @@ builder.Services.AddSignalR();
 builder.Services.AddScoped<IUsuariosRepository>(provider =>
     new UsuariosRepository(connectionString!));
 builder.Services.AddScoped<IChatsSignalR, ChatSignalR>();
+builder.Services.AddScoped<IChatsRepository>(provider =>
+    new ChatsRepository(connectionString!));
 
 //Implementación de Puertos de Entrada (Casos de Uso)
 builder.Services.AddScoped<IIngresarUsuarioCasoUso, IngresarUsuarioCasoUso>();
@@ -37,12 +39,15 @@ builder.Services.AddScoped<IBuscarTodosCasoUso, BuscarTodosCasoUso>();
 builder.Services.AddScoped<IEnviarGrupoCasoUso, EnviarGrupoCasoUso>();
 builder.Services.AddScoped<IEnviarTodosCasoUso, EnviarTodosCasoUso>();
 builder.Services.AddScoped<IEnviarUsuarioCasoUso, EnviarUsuarioCasoUso>();
+builder.Services.AddScoped<IBuscarTodosCodigoCasoUso, BuscarTodosCodigoCasoUso>();
+builder.Services.AddScoped<ICrearCodigoCasoUso, CrearCodigoCasoUso>();
 
 
 //Configuramos autenticación de Token
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
 {
+    //Configuración de Parámetros de Token
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = false,
@@ -52,7 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
         ClockSkew = TimeSpan.Zero
     };
-
+    //Configuración de token para autenticación de SignalR
     options.Events = new JwtBearerEvents
     {
         OnMessageReceived = context =>

@@ -9,5 +9,6 @@ namespace Hexagonal.Application.Persistencia
         Task<Usuario> Ingresar(Usuario usuario);
         Task<bool> RegistrarUsuario(Usuario usuario);
         Task<List<Usuario>> BuscarTodos();
+        Task<Usuario> BuscarUsuarioPorNombre(string nombre);
     }
 }
