@@ -154,7 +154,7 @@ CREATE TABLE CodigoChat(
 
 ## 🔧 Backend
 
-### Npgsql
+### Npgsql (Infraestructure) 
 
 Proveedor oficial de PostgreSQL para .NET.
 
@@ -166,7 +166,7 @@ Permite conectar la aplicación con PostgreSQL.
 
 ---
 
-### Dapper
+### Dapper (Infraestructure)
 
 Micro ORM ligero para ejecutar consultas SQL y mapear resultados a objetos C#.
 
@@ -176,7 +176,7 @@ dotnet add package Dapper
 
 ---
 
-### Microsoft.AspNetCore.Authentication.JwtBearer
+### Microsoft.AspNetCore.Authentication.JwtBearer (API)
 
 Permite implementar autenticación basada en JSON Web Tokens (JWT).
 
@@ -186,7 +186,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 
 ---
 
-### Microsoft.AspNetCore.SignalR.Core
+### Microsoft.AspNetCore.SignalR.Core (Infraestructure)
 
 Biblioteca para implementar comunicación en tiempo real entre clientes y servidor.
 
