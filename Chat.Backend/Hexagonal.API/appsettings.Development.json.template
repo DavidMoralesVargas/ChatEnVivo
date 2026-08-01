@@ -1,4 +1,7 @@
 {
+  "ConnectionStrings": {
+    "PostgreSqlConnection": "Host=localhost;Port=[PUERTO];Database=UniversoDeTinieblas;Username=[NombreUsuario];Password=[Contraseña]"
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",
