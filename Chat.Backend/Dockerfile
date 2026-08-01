@@ -2,16 +2,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copiar archivos sin la '/' inicial
+# Copiar proyectos con los nombres EXACTOS de tus carpetas
 COPY ["Hexagonal.API/Hexagonal.API.csproj", "Hexagonal.API/"]
 COPY ["Hexagonal.Application/Hexagonal.Application.csproj", "Hexagonal.Application/"]
 COPY ["Hexagonal.Domain/Hexagonal.Domain.csproj", "Hexagonal.Domain/"]
-COPY ["Hexagonal.Infrastructure/Hexagonal.Infrastructure.csproj", "Hexagonal.Infrastructure/"]
+COPY ["Hexagonal.Infraestructura/Hexagonal.Infraestructura.csproj", "Hexagonal.Infraestructura/"]
 
 # Restaurar dependencias
 RUN dotnet restore "Hexagonal.API/Hexagonal.API.csproj"
 
-# Copiar todo el código del backend
+# Copiar el resto del código
 COPY . .
 
 # Compilar y publicar
