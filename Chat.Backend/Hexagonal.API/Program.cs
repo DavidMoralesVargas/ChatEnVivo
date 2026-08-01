@@ -90,9 +90,10 @@ app.UseCors(x => x
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapHub<ChatHub>("/chathub");
 
