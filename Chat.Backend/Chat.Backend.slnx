@@ -5,6 +5,9 @@
   <Folder Name="/Domain/">
     <Project Path="Hexagonal.Domain/Hexagonal.Domain.csproj" Id="11e24f0b-a11b-4a74-bc0f-c5a4926fd9f1" />
   </Folder>
+  <Folder Name="/Elementos de la solución/">
+    <File Path="Dockerfile" />
+  </Folder>
   <Folder Name="/Infraestructure/">
     <Project Path="Hexagonal.Infraestructure/Hexagonal.Infraestructure.csproj" Id="96556f01-f995-4755-9ec9-04aeeb3eee50" />
   </Folder>
