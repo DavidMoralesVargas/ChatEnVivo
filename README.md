@@ -1,3 +1,17 @@
+## Despliegue y Arquitectura Nivel 2 de C4
+
+### Aplicación desplegada
+El proyecto frontend se encuentra desplegado y funcional en la plataforma **Vercel**:
+* **URL de la Aplicación:** [https://chat-en-vivo-hazel.vercel.app/](https://chat-en-vivo-hazel.vercel.app/)
+---
+
+### Diagrama de Contenedores (C4 - Nivel 2)
+A continuación se presenta una pequeña arquitectura del sistema, ilustrando la separación entre el cliente (Frontend usando Vue.js) y el servidor (Backend ASP.NET Core Web API - Hexagonal) y cómo interactúan entre sí dentro de la arquitectura que se usa Vercel - Render - Supabase
+
+![Diagrama C4 Nivel 2](./C4_ChatEnVivo.png)
+
+
+
 # Chat en Vivo con SignalR
 
 Aplicación de chat en tiempo real desarrollada con **ASP.NET Core**, **Vue.js** y **SignalR**, cuyo objetivo principal fue practicar la implementación de comunicación en tiempo real utilizando tecnologías WebSocket y aplicar una **Arquitectura Hexagonal (Ports and Adapters)**.
