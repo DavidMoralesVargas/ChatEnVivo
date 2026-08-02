@@ -65,7 +65,7 @@ import Swal from 'sweetalert2';
 import ChatHeader from '../../components/ChatHeader.vue';
 
 // --- CONSTANTES ---
-const BASE_URL = 'https://localhost:7274'; 
+const BASE_URL = 'https://chatenvivo-5god.onrender.com'; 
 const API_URL = `${BASE_URL}/api/chat`;
 const HUB_URL = `${BASE_URL}/chathub`;
 

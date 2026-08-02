@@ -42,7 +42,7 @@ const mensajes = ref([]);
 const nuevoMensaje = ref("");
 let connection = null;
 
-const API_BASE_URL = "https://localhost:7274"; 
+const API_BASE_URL = "https://chatenvivo-5god.onrender.com"; 
 
 // Aquí obtienes el correo o nombre del usuario logueado
 const miUsuario = localStorage.getItem("Username") || "Anónimo";

@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 // 1. Creamos la instancia de Axios
 const apiClient = axios.create({
-  baseURL: 'https://localhost:7274',
+  baseURL: 'https://chatenvivo-5god.onrender.com',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'

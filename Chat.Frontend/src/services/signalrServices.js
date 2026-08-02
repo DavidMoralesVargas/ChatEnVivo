@@ -5,7 +5,7 @@ class SignalRService {
 
     async start() {
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl("https://localhost:5001/gamehub")
+            .withUrl("https://chatenvivo-5god.onrender.com/gamehub")
             .withAutomaticReconnect()
             .build();
 

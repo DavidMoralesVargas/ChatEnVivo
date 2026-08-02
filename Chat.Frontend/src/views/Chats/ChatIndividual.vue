@@ -62,7 +62,7 @@ const mensajes = ref([]);
 const nuevoMensaje = ref("");
 const contenedorMensajes = ref(null);
 let connection = null;
-const url_api = "https://localhost:7274"
+const url_api = "https://chatenvivo-5god.onrender.com"
 
 // IMPORTANTE: Debes reemplazar esto con la lógica para obtener tu nombre de usuario real (ej. desde el JWT)
 const miNombreUsuario = ref("MiUsuarioActual"); 
